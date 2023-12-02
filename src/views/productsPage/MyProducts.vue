@@ -3,14 +3,9 @@
     <default-header />
     <div class="container">
       <div class="product__wrapper">
-        <cards-person />
-        <cards-person />
-        <cards-person />
-        <cards-person />
-        <cards-person />
-        <cards-person />
-        <cards-person />
+        <cards-person :dataResults="dataResults" />
         <p v-if="error !== null">{{ error }}</p>
+        <p v-if="loading">Is loading...</p>
       </div>
     </div>
   </div>
@@ -20,9 +15,9 @@
 import CardsPerson from "@/components/cards/CardsPerson.vue";
 import DefaultHeader from "@/components/DefaultHeader.vue";
 import { getDataRickMorty } from "@/api/apiRickMorty.js";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
-const data = ref([]);
+const dataResults = ref([]);
 const loading = ref(false);
 const error = ref(null);
 
@@ -30,8 +25,11 @@ const fetchDataFromApi = async () => {
   loading.value = true;
   try {
     const queryParams = { page: 19 };
-    data.value = await getDataRickMorty(queryParams);
-    return data.value;
+    if (dataResults.value) {
+      dataResults.value = await getDataRickMorty(queryParams);
+    }
+    console.log(dataResults.value.results);
+    return dataResults.value;
   } catch (e) {
     console.error("Error fetching data:", e.message);
     error.value = "Error fetching data";
@@ -41,11 +39,7 @@ const fetchDataFromApi = async () => {
   }
 };
 
-const fetchData = async () => {
-  console.log(await fetchDataFromApi());
-};
-
-fetchData();
+onMounted(fetchDataFromApi);
 </script>
 
 <style lang="scss" scoped>

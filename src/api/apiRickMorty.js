@@ -10,8 +10,6 @@ async function getDataRickMorty(queryParams = {}) {
 
   const url = `${baseURL}${queryString ? `?${queryString}` : ""}`;
 
-  console.log(url);
-
   try {
     const response = await fetch(url);
     const data = await response.json();

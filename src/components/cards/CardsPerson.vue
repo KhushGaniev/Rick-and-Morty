@@ -1,14 +1,11 @@
 <template>
-  <div class="card">
+  <div class="card" v-for="item in infoCharacters" :key="item.id">
     <div class="card__header">
-      <h2 class="card__name">Имя персонажа</h2>
-      <p class="card__status">Статус</p>
+      <h2 class="card__name">{{ item.name }}</h2>
+      <p class="card__status">{{ item.status }}</p>
     </div>
     <div class="card__image">
-      <img
-        src="https://rickandmortyapi.com/api/character/avatar/361.jpeg"
-        alt="Изображение персонажа"
-      />
+      <img :src="`${item.image}`" alt="Изображение персонажа" />
     </div>
     <div class="card__episodes">
       <h3 class="card__episodes-title">Список эпизодов</h3>
@@ -20,7 +17,19 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed, defineProps } from "vue";
+
+const props = defineProps({
+  dataResults: {
+    type: Object,
+  },
+});
+
+const infoCharacters = computed(() => {
+  return props.dataResults.results;
+});
+</script>
 
 <style lang="scss" scoped>
 .card {
