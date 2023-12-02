@@ -18,6 +18,9 @@
 <script setup>
 import CardsPerson from "@/components/cards/CardsPerson.vue";
 import DefaultHeader from "@/components/DefaultHeader.vue";
+// import { ref } from "vue";
+
+// const retrieveData = () => {};
 </script>
 
 <style lang="scss" scoped>
