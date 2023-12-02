@@ -2,4 +2,4 @@
   <router-view />
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" src="@/assets/scss/normalize.scss"></style>
