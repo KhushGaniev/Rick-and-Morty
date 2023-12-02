@@ -10,6 +10,7 @@
         <cards-person />
         <cards-person />
         <cards-person />
+        <p v-if="error !== null">{{ error }}</p>
       </div>
     </div>
   </div>
@@ -18,9 +19,33 @@
 <script setup>
 import CardsPerson from "@/components/cards/CardsPerson.vue";
 import DefaultHeader from "@/components/DefaultHeader.vue";
-// import { ref } from "vue";
+import { getDataRickMorty } from "@/api/apiRickMorty.js";
+import { ref } from "vue";
 
-// const retrieveData = () => {};
+const data = ref([]);
+const loading = ref(false);
+const error = ref(null);
+
+const fetchDataFromApi = async () => {
+  loading.value = true;
+  try {
+    const queryParams = { page: 19 };
+    data.value = await getDataRickMorty(queryParams);
+    return data.value;
+  } catch (e) {
+    console.error("Error fetching data:", e.message);
+    error.value = "Error fetching data";
+    throw e;
+  } finally {
+    loading.value = false;
+  }
+};
+
+const fetchData = async () => {
+  console.log(await fetchDataFromApi());
+};
+
+fetchData();
 </script>
 
 <style lang="scss" scoped>
