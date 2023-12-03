@@ -23,17 +23,30 @@ const error = ref(null);
 
 const fetchDataFromApi = async () => {
   loading.value = true;
+
   try {
     const queryParams = { page: 19 };
+
     if (dataResults.value) {
       dataResults.value = await getDataRickMorty(queryParams);
     }
-    console.log(dataResults.value.results);
+
+    const episodeUrls = dataResults.value.results.map((result) =>
+      result.episode.map((episode) => episode)
+    );
+
+    const episodesData = await Promise.all(
+      episodeUrls.map((url) => fetch(url).then((response) => response.json()))
+    );
+    const airDates = episodesData.map((episodeData) => episodeData.name);
+
+    console.log(airDates);
+    console.log(episodeUrls);
     return dataResults.value;
-  } catch (e) {
-    console.error("Error fetching data:", e.message);
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
     error.value = "Error fetching data";
-    throw e;
+    throw error;
   } finally {
     loading.value = false;
   }
