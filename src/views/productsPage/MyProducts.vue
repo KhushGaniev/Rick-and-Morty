@@ -25,14 +25,14 @@ const fetchDataFromApi = async () => {
   loading.value = true;
 
   try {
-    const queryParams = { page: 19 };
+    const queryParams = { page: 2 };
 
     if (dataResults.value) {
       dataResults.value = await getDataRickMorty(queryParams);
     }
 
-    const episodeUrls = dataResults.value.results.map((result) =>
-      result.episode.map((episode) => episode)
+    const episodeUrls = dataResults.value.results.map(
+      (result) => result.episode
     );
 
     const episodesData = await Promise.all(

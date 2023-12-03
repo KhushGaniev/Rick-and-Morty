@@ -1,4 +1,4 @@
-const baseURL = "https://rickandmortyapi.com/api/character/?";
+const baseURL = "https://rickandmortyapi.com/api/character/";
 
 async function getDataRickMorty(queryParams = {}) {
   const queryString = Object.keys(queryParams)
