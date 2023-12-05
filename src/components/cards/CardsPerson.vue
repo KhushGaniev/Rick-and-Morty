@@ -10,8 +10,13 @@
     <div class="card__episodes">
       <h3 class="card__episodes-title">Список эпизодов</h3>
       <ul class="card__episodes-list">
-        <li class="card__episode">Эпизод 1</li>
-        <li class="card__episode">Эпизод 2</li>
+        <li
+          class="card__episode"
+          v-for="(episode, index) in item.episoders"
+          :key="index"
+        >
+          {{ episode }}
+        </li>
       </ul>
     </div>
   </div>
@@ -24,20 +29,11 @@ const props = defineProps({
   dataResults: {
     type: Object,
   },
-  dataSpace: {
-    type: Array,
-  },
 });
 
 const infoCharacters = computed(() => {
   return props.dataResults.results;
 });
-
-const infoCharactersEpisode = computed(() => {
-  return props.dataResults.results;
-});
-
-console.log(infoCharactersEpisode);
 </script>
 
 <style lang="scss" scoped>

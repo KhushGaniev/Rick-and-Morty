@@ -3,7 +3,7 @@
     <default-header />
     <div class="container">
       <div class="product__wrapper">
-        <cards-person :dataResults="dataResults" :dataSpace="dataSpace" />
+        <cards-person :dataResults="dataResults" />
         <p v-if="error !== null">{{ error }}</p>
         <p v-if="loading">Is loading...</p>
       </div>
@@ -27,26 +27,25 @@ const fetchDataFromApi = async () => {
 
   try {
     const queryParams = { page: 2 };
-
-    if (dataResults.value) {
-      dataResults.value = await getDataRickMorty(queryParams);
-    }
-
-    const episodeUrls = dataResults.value.results.map((result) =>
-      result.episode.map(async (el) => {
-        const response = await fetch(el);
-        const data = await response.json();
-        return data.name;
-      })
-    );
+    dataResults.value = await getDataRickMorty(queryParams);
 
     const episodeNames = await Promise.all(
-      episodeUrls.map((urls) => Promise.all(urls))
+      dataResults.value.results.map(async (result) =>
+        Promise.all(
+          result.episode.map(
+            async (el) => (await (await fetch(el)).json()).name
+          )
+        )
+      )
     );
 
-    dataSpace.value = [...episodeNames];
+    dataSpace.value = episodeNames;
 
-    console.log(episodeNames);
+    dataResults.value.results.forEach((result, index) => {
+      result.episoders = dataSpace.value[index];
+    });
+
+    console.log(dataResults.value.results);
 
     return dataResults.value;
   } catch (error) {
