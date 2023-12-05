@@ -24,11 +24,20 @@ const props = defineProps({
   dataResults: {
     type: Object,
   },
+  dataSpace: {
+    type: Array,
+  },
 });
 
 const infoCharacters = computed(() => {
   return props.dataResults.results;
 });
+
+const infoCharactersEpisode = computed(() => {
+  return props.dataResults.results;
+});
+
+console.log(infoCharactersEpisode);
 </script>
 
 <style lang="scss" scoped>

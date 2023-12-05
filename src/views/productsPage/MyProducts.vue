@@ -3,7 +3,7 @@
     <default-header />
     <div class="container">
       <div class="product__wrapper">
-        <cards-person :dataResults="dataResults" />
+        <cards-person :dataResults="dataResults" :dataSpace="dataSpace" />
         <p v-if="error !== null">{{ error }}</p>
         <p v-if="loading">Is loading...</p>
       </div>
@@ -18,6 +18,7 @@ import { getDataRickMorty } from "@/api/apiRickMorty.js";
 import { ref, onMounted } from "vue";
 
 const dataResults = ref([]);
+const dataSpace = ref([]);
 const loading = ref(false);
 const error = ref(null);
 
@@ -31,17 +32,22 @@ const fetchDataFromApi = async () => {
       dataResults.value = await getDataRickMorty(queryParams);
     }
 
-    const episodeUrls = dataResults.value.results.map(
-      (result) => result.episode
+    const episodeUrls = dataResults.value.results.map((result) =>
+      result.episode.map(async (el) => {
+        const response = await fetch(el);
+        const data = await response.json();
+        return data.name;
+      })
     );
 
-    const episodesData = await Promise.all(
-      episodeUrls.map((url) => fetch(url).then((response) => response.json()))
+    const episodeNames = await Promise.all(
+      episodeUrls.map((urls) => Promise.all(urls))
     );
-    const airDates = episodesData.map((episodeData) => episodeData.name);
 
-    console.log(airDates);
-    console.log(episodeUrls);
+    dataSpace.value = [...episodeNames];
+
+    console.log(episodeNames);
+
     return dataResults.value;
   } catch (error) {
     console.error("Error fetching data:", error.message);
