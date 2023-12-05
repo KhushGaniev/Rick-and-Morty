@@ -68,7 +68,7 @@ onMounted(fetchDataFromApi);
 
 .product {
   background-color: #f8f8f8;
-  height: 100vh;
+  min-height: 100vh;
   &__wrapper {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
