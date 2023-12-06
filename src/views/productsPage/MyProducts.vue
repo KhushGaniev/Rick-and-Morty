@@ -4,6 +4,8 @@
 
     <div class="container">
       <div class="product__wrapper">
+        <custom-select />
+
         <cards-person :dataResults="dataResults" />
 
         <p v-if="error !== null">{{ error }}</p>
@@ -34,7 +36,7 @@
 
         <default-button
           :disabled="isLastPage"
-          :title="lastPageCount"
+          :title="String(lastPageCount)"
           :color="'secondary-button'"
           @click="goToPage(lastPageCount)"
         />
@@ -50,6 +52,7 @@ import { ref, onMounted, computed } from "vue";
 import CardsPerson from "@/components/cards/CardsPerson.vue";
 import DefaultHeader from "@/components/DefaultHeader.vue";
 import DefaultButton from "@/components/base/DefaultButton.vue";
+import CustomSelect from "@/components/filtersPopup/CustomSelect.vue";
 
 const dataResults = ref([]);
 const dataSpace = ref([]);
