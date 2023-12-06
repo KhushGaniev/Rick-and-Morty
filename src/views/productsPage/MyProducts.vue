@@ -1,29 +1,55 @@
 <template>
   <div class="product">
     <default-header />
+
     <div class="container">
       <div class="product__wrapper">
         <cards-person :dataResults="dataResults" />
+
         <p v-if="error !== null">{{ error }}</p>
+
         <p v-if="loading">Is loading...</p>
       </div>
+
       <div class="product__pagination">
-        <button @click="goToPage(1)">1</button>
-        <button @click="prevPage" :disabled="isFirstPage">Previous</button>
-        <button @click="nextPage" :disabled="isLastPage">Next</button>
-        <button @click="goToPage(lastPageCount)" :disabled="isLastPage">
-          {{ lastPageCount }}
-        </button>
+        <default-button
+          :title="'1'"
+          :color="'secondary-button'"
+          @click="goToPage(1)"
+        />
+
+        <default-button
+          :disabled="isFirstPage"
+          :title="'Previous'"
+          :color="'secondary-button'"
+          @click="prevPage"
+        />
+
+        <default-button
+          :disabled="isLastPage"
+          :title="'Next'"
+          :color="'secondary-button'"
+          @click="nextPage"
+        />
+
+        <default-button
+          :disabled="isLastPage"
+          :title="lastPageCount"
+          :color="'secondary-button'"
+          @click="goToPage(lastPageCount)"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import CardsPerson from "@/components/cards/CardsPerson.vue";
-import DefaultHeader from "@/components/DefaultHeader.vue";
 import { getDataRickMorty } from "@/api/apiRickMorty.js";
 import { ref, onMounted, computed } from "vue";
+
+import CardsPerson from "@/components/cards/CardsPerson.vue";
+import DefaultHeader from "@/components/DefaultHeader.vue";
+import DefaultButton from "@/components/base/DefaultButton.vue";
 
 const dataResults = ref([]);
 const dataSpace = ref([]);
@@ -116,20 +142,6 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-
-    button {
-      padding: 8px 16px;
-      margin: 0 4px;
-      cursor: pointer;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      background-color: #fff;
-
-      &:disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-      }
-    }
   }
 }
 </style>
