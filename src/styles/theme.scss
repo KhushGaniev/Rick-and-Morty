@@ -1,0 +1,25 @@
+@import '@/styles/colors.scss';
+
+:root { 
+
+  /* default colors */
+  --default-black: #111;
+  --default-white: #fff;
+  --default-grey: #555;
+
+  /* popular colors */
+  --primary-cl: #4caf50;
+  --color-secondary: #007bff;
+
+  /* hover colors */
+  --hover-secondary: #0056b3;
+  --hover-cl: #45a049;
+
+  /* active colors */
+  --active-cl: #39843c;
+  --active-secondary: #003366;
+
+  /* colors */
+  --black-blue-01: #001a33;
+  --grey-01: #333;
+}

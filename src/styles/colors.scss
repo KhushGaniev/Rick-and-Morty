@@ -1,0 +1,17 @@
+.color {
+  &_primary {
+    color: var(--primary-cl);
+  }
+
+  &_secondary {
+    color: var(--color-secondary);
+  }
+
+  &_white {
+    color: var(--default-white);
+  }
+
+  &_black {
+    color: var(--default-black);
+  }
+}

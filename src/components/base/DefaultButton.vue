@@ -70,7 +70,7 @@ updateButtonClass();
 }
 
 .secondary-button {
-  background-color: #007bff;
+  background-color: var(--color-secondary);
   color: #fff;
   padding: 10px 15px;
   font-size: 16px;
@@ -81,7 +81,7 @@ updateButtonClass();
   }
 
   &:active {
-    background-color: #003366;
+    background-color: var(--active-secondary);
     border-color: #001a33;
   }
 }
