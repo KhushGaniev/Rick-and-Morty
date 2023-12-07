@@ -47,7 +47,7 @@ export default {
   margin: 20px auto;
   .selector {
     border: 1px solid gainsboro;
-    background: #f8f8f8;
+    background: var(--white-01);
     position: relative;
     z-index: 1;
     .arrow {
@@ -58,7 +58,7 @@ export default {
       height: 0;
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
-      border-top: 10px solid #888;
+      border-top: 10px solid var(--grey-03);
       transform: rotateZ(0deg) translateY(0px);
       transition-duration: 0.3s;
       transition-timing-function: cubic-bezier(0.59, 1.39, 0.37, 1.01);
@@ -70,7 +70,7 @@ export default {
       display: block;
       padding: 12px;
       font-size: 16px;
-      color: #888;
+      color: var(--grey-03);
     }
   }
   ul {
@@ -86,14 +86,14 @@ export default {
   }
   li {
     padding: 12px;
-    color: #666;
+    color: var(--grey-02);
     &:hover {
-      color: white;
+      color: var(--default-white);
       background: seagreen;
     }
   }
   .current {
-    background: #eaeaea;
+    background: var(--white-04);
   }
   .hidden {
     visibility: hidden;

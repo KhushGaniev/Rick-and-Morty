@@ -38,7 +38,7 @@ const infoCharacters = computed(() => {
 
 <style lang="scss" scoped>
 .card {
-  border: 1px solid #ccc;
+  border: 1px solid var(--white-02);
   border-radius: 8px;
   overflow: hidden;
   width: 300px;
@@ -46,7 +46,7 @@ const infoCharacters = computed(() => {
 
   &__header {
     padding: 16px;
-    background-color: #f0f0f0;
+    background-color: var(--white-03);
     text-align: center;
 
     &__name {
@@ -57,7 +57,7 @@ const infoCharacters = computed(() => {
     &__status {
       margin: 8px 0 0;
       font-size: 0.9em;
-      color: #666;
+      color: var(--grey-02);
     }
   }
 

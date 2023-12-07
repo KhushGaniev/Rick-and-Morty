@@ -6,6 +6,8 @@
       <div class="product__wrapper">
         <custom-select />
 
+        <custom-select />
+
         <cards-person :dataResults="dataResults" />
 
         <p v-if="error !== null">{{ error }}</p>
@@ -131,7 +133,7 @@ onMounted(() => {
 }
 
 .product {
-  background-color: #f8f8f8;
+  background-color: var(--white-01);
   min-height: 100vh;
 
   &__wrapper {
