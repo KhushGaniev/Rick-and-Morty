@@ -1,10 +1,10 @@
 <template>
   <div class="aselect" :data-value="newDefaultValue" :data-list="list">
-    <div class="selector" @click="toggle()">
-      <div class="label">
+    <div class="aselect__selector" @click="toggle()">
+      <div class="aselect__selector-label">
         <span>{{ newDefaultValue }}</span>
       </div>
-      <div class="arrow" :class="{ expanded: visible }"></div>
+      <div class="aselect__selector-arrow" :class="{ expanded: visible }"></div>
       <div :class="{ hidden: !visible, visible }">
         <ul>
           <li
@@ -50,12 +50,14 @@ const select = (option) => {
 .aselect {
   width: 280px;
   margin: 20px auto;
-  .selector {
+
+  &__selector {
     border: 1px solid gainsboro;
     background: var(--white-01);
     position: relative;
     z-index: 1;
-    .arrow {
+
+    &-arrow {
       position: absolute;
       right: 10px;
       top: 40%;
@@ -71,13 +73,15 @@ const select = (option) => {
     .expanded {
       transform: rotateZ(180deg) translateY(2px);
     }
-    .label {
+
+    &-label {
       display: block;
       padding: 12px;
       font-size: 16px;
       color: var(--grey-03);
     }
   }
+
   ul {
     width: 100%;
     list-style-type: none;
@@ -89,6 +93,7 @@ const select = (option) => {
     z-index: 1;
     background: #fff;
   }
+
   li {
     padding: 12px;
     color: var(--grey-02);
@@ -97,12 +102,15 @@ const select = (option) => {
       background: seagreen;
     }
   }
+
   .current {
     background: var(--white-04);
   }
+
   .hidden {
     visibility: hidden;
   }
+
   .visible {
     visibility: visible;
   }
