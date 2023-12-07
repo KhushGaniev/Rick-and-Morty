@@ -21,23 +21,19 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: function () {
-    return {
-      value: "Select a Fruit",
-      list: ["Orange", "Apple", "Kiwi", "Lemon", "Pineapple"],
-      visible: false,
-    };
-  },
-  methods: {
-    toggle() {
-      this.visible = !this.visible;
-    },
-    select(option) {
-      this.value = option;
-    },
-  },
+<script setup>
+import { ref } from "vue";
+
+const value = ref("Select a Fruit");
+const list = ref(["Orange", "Apple", "Kiwi", "Lemon", "Pineapple"]);
+const visible = ref(false);
+
+const toggle = () => {
+  visible.value = !visible.value;
+};
+
+const select = (option) => {
+  value.value = option;
 };
 </script>
 
