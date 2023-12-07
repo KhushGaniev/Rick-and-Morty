@@ -4,9 +4,15 @@
 
     <div class="container">
       <div class="product__wrapper">
-        <custom-select />
+        <custom-select
+          :list="selectListStatus"
+          :defaultValue="defaultValueStatus"
+        />
 
-        <custom-select />
+        <custom-select
+          :list="selectListGender"
+          :defaultValue="defaultValueGender"
+        />
 
         <cards-person :dataResults="dataResults" />
 
@@ -62,6 +68,10 @@ const loading = ref(false);
 const error = ref(null);
 const currentPage = ref(1);
 const lastPageCount = ref(null);
+const selectListStatus = ref(["alive", "dead", "unknown"]);
+const selectListGender = ref(["female", "male", "genderless", "unknown"]);
+const defaultValueStatus = ref("Status");
+const defaultValueGender = ref("Gender");
 
 const isFirstPage = computed(() => currentPage.value === 1);
 const isLastPage = computed(() => currentPage.value === lastPageCount.value);

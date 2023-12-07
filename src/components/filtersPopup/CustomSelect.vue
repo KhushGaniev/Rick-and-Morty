@@ -1,8 +1,8 @@
 <template>
-  <div class="aselect" :data-value="value" :data-list="list">
+  <div class="aselect" :data-value="newDefaultValue" :data-list="list">
     <div class="selector" @click="toggle()">
       <div class="label">
-        <span>{{ value }}</span>
+        <span>{{ newDefaultValue }}</span>
       </div>
       <div class="arrow" :class="{ expanded: visible }"></div>
       <div :class="{ hidden: !visible, visible }">
@@ -10,7 +10,7 @@
           <li
             v-for="(item, index) in list"
             :key="index"
-            :class="{ current: item === value }"
+            :class="{ current: item === newDefaultValue }"
             @click="select(item)"
           >
             {{ item }}
@@ -22,18 +22,27 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
 
-const value = ref("Select a Fruit");
-const list = ref(["Orange", "Apple", "Kiwi", "Lemon", "Pineapple"]);
+const props = defineProps({
+  defaultValue: {
+    type: String,
+  },
+  list: {
+    type: Array,
+  },
+});
+
 const visible = ref(false);
+const newDefaultValue = ref(props.defaultValue);
 
 const toggle = () => {
   visible.value = !visible.value;
 };
 
 const select = (option) => {
-  value.value = option;
+  newDefaultValue.value = option;
+  console.log(newDefaultValue.value);
 };
 </script>
 
