@@ -4,15 +4,17 @@
 
     <div class="container">
       <div class="product__wrapper">
-        <custom-select
-          :list="selectListStatus"
-          :defaultValue="defaultValueStatus"
-        />
+        <div class="product__select">
+          <custom-select
+            :list="selectListStatus"
+            :defaultValue="defaultValueStatus"
+          />
 
-        <custom-select
-          :list="selectListGender"
-          :defaultValue="defaultValueGender"
-        />
+          <custom-select
+            :list="selectListGender"
+            :defaultValue="defaultValueGender"
+          />
+        </div>
 
         <cards-person :dataResults="dataResults" />
 
@@ -76,6 +78,10 @@ const defaultValueGender = ref("Gender");
 const isFirstPage = computed(() => currentPage.value === 1);
 const isLastPage = computed(() => currentPage.value === lastPageCount.value);
 
+onMounted(() => {
+  fetchDataFromApi();
+});
+
 const goToPage = (page) => {
   currentPage.value = page;
   fetchDataFromApi();
@@ -130,10 +136,6 @@ const fetchDataFromApi = async () => {
     loading.value = false;
   }
 };
-
-onMounted(() => {
-  fetchDataFromApi();
-});
 </script>
 
 <style lang="scss" scoped>
@@ -151,6 +153,12 @@ onMounted(() => {
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
     padding: 16px;
+  }
+
+  &__select {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
   }
 
   &__pagination {

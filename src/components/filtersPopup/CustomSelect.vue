@@ -33,7 +33,7 @@ const props = defineProps({
   },
 });
 
-const visible = ref(false);
+const visible = ref(true);
 const newDefaultValue = ref(props.defaultValue);
 
 const toggle = () => {
@@ -42,7 +42,6 @@ const toggle = () => {
 
 const select = (option) => {
   newDefaultValue.value = option;
-  console.log(newDefaultValue.value);
 };
 </script>
 
