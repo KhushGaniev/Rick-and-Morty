@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, watch, defineProps } from "vue";
+import { ref, watch, onBeforeMount, defineProps } from "vue";
 
 const props = defineProps({
   title: {
@@ -18,18 +18,12 @@ const props = defineProps({
 
 const buttonClass = ref("");
 
-watch(
-  () => props.color,
-  () => {
-    updateButtonClass();
-  }
-);
+watch(() => props.color, updateButtonClass);
+onBeforeMount(updateButtonClass);
 
-const updateButtonClass = () => {
+function updateButtonClass() {
   buttonClass.value = `custom-button ${props.color}-button`;
-};
-
-updateButtonClass();
+}
 </script>
 
 <style lang="scss" scoped>

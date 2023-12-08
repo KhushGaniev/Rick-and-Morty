@@ -127,8 +127,8 @@ const handleGenderChange = createSelectHandler(
 const clearFilterSelect = () => {
   paramsQueryGender.value = "";
   paramsQueryStatus.value = "";
-  defaultValueStatus.value = "Status";
-  defaultValueGender.value = "Gender";
+  defaultValueGender.value = ref("Gender");
+  defaultValueStatus.value = ref("Status");
 
   fetchDataFromApi();
 };

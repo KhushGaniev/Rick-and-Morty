@@ -24,16 +24,24 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from "vue";
+import { ref, defineProps, defineEmits, watch } from "vue";
 
 const props = defineProps({
   defaultValue: {
-    type: String,
+    type: [String, Object],
   },
   list: {
     type: Array,
   },
 });
+
+watch(
+  () => props.defaultValue,
+  (newValue) => {
+    const res = ref(newValue);
+    newDefaultValue.value = res.value;
+  }
+);
 
 const emits = defineEmits(["value-сhange"]);
 
