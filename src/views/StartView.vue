@@ -1,12 +1,38 @@
 <template>
   <div class="start">
-    This is the start page.
-    <router-link to="/products"><span>Click to continue</span></router-link>
+    <h1 class="start__title">This is the start page.</h1>
+    <router-link class="start__link" to="/products">
+      <span>Click to continue</span>
+    </router-link>
   </div>
 </template>
 <style lang="scss" scoped>
-span {
-  font-size: 20px;
-  font-weight: 600;
+.start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 100vh;
+
+  &__title {
+    text-align: center;
+    font-size: 100px;
+
+    @media (max-width: 768px) {
+      font-size: 50px;
+    }
+  }
+
+  &__link {
+    color: red;
+    font-size: 70px;
+    font-weight: 600;
+    text-decoration: underline;
+
+    @media (max-width: 768px) {
+      font-size: 30px;
+    }
+  }
 }
 </style>
