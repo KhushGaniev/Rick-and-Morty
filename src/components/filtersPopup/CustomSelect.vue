@@ -5,21 +5,20 @@
         <span>{{ newDefaultValue }}</span>
         <div
           class="aselect__selector-arrow"
-          :class="{ expanded: visible }"
+          :class="{ 'aselect__selector-arrow_active': visible }"
         ></div>
       </div>
-      <div :class="{ hidden: !visible, visible }">
-        <ul v-if="visible">
-          <li
-            v-for="(item, index) in list"
-            :key="index"
-            :class="{ current: item === newDefaultValue }"
-            @click="select(item)"
-          >
-            {{ item }}
-          </li>
-        </ul>
-      </div>
+      <ul class="aselect__list" v-if="visible">
+        <li
+          v-for="(item, index) in list"
+          :key="index"
+          class="aselect__item"
+          :class="{ current: item === newDefaultValue }"
+          @click="select(item)"
+        >
+          {{ item }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -38,7 +37,7 @@ const props = defineProps({
 
 const emits = defineEmits(["value-сhange"]);
 
-const visible = ref(true);
+const visible = ref(false);
 const newDefaultValue = ref(props.defaultValue);
 
 const toggle = () => {
@@ -69,9 +68,10 @@ const select = (option) => {
       transform: rotateZ(0deg) translateY(0px);
       transition-duration: 0.3s;
       transition-timing-function: cubic-bezier(0.59, 1.39, 0.37, 1.01);
-    }
-    .expanded {
-      transform: rotateZ(180deg) translateY(2px);
+
+      &_active {
+        transform: rotateZ(180deg) translateY(2px);
+      }
     }
 
     &-label {
@@ -84,14 +84,14 @@ const select = (option) => {
     }
   }
 
-  ul {
+  &__list {
     width: 100%;
     font-size: 16px;
     border: 1px solid gainsboro;
     background: #fff;
   }
 
-  li {
+  &__item {
     padding: 12px;
     color: var(--grey-02);
     &:hover {
@@ -102,14 +102,6 @@ const select = (option) => {
 
   .current {
     background: var(--white-04);
-  }
-
-  .hidden {
-    visibility: hidden;
-  }
-
-  .visible {
-    visibility: visible;
   }
 }
 </style>
