@@ -3,10 +3,13 @@
     <div class="aselect__selector" @click="toggle()">
       <div class="aselect__selector-label">
         <span>{{ newDefaultValue }}</span>
+        <div
+          class="aselect__selector-arrow"
+          :class="{ expanded: visible }"
+        ></div>
       </div>
-      <div class="aselect__selector-arrow" :class="{ expanded: visible }"></div>
       <div :class="{ hidden: !visible, visible }">
-        <ul>
+        <ul v-if="visible">
           <li
             v-for="(item, index) in list"
             :key="index"
@@ -60,11 +63,6 @@ const select = (option) => {
     z-index: 1;
 
     &-arrow {
-      position: absolute;
-      right: 10px;
-      top: 40%;
-      width: 0;
-      height: 0;
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
       border-top: 10px solid var(--grey-03);
@@ -77,7 +75,9 @@ const select = (option) => {
     }
 
     &-label {
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 12px;
       font-size: 16px;
       color: var(--grey-03);
@@ -86,13 +86,8 @@ const select = (option) => {
 
   ul {
     width: 100%;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
     font-size: 16px;
     border: 1px solid gainsboro;
-    position: absolute;
-    z-index: 1;
     background: #fff;
   }
 
