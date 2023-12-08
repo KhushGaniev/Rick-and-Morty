@@ -17,8 +17,17 @@
             @value-сhange="handleGenderChange"
           />
 
-          <button @click="fetchDataFromApi">Click</button>
-          <button @click="clearFilterSelect">Clear</button>
+          <default-button
+            :title="'Применить'"
+            :color="'primary-button'"
+            @click="fetchDataFromApi"
+          />
+
+          <default-button
+            :title="'Сбросить фильтры'"
+            :color="'secondary-button'"
+            @click="clearFilterSelect"
+          />
         </div>
 
         <cards-person :dataResults="dataResults" />
