@@ -88,17 +88,21 @@ onMounted(() => {
   fetchDataFromApi();
 });
 
-const handleStatusChange = (select) => {
-  if (selectListStatus.value.includes(select)) {
-    paramsQueryStatus.value = select;
+const createSelectHandler = (selectList, paramsQuery) => (select) => {
+  if (selectList.includes(select)) {
+    paramsQuery.value = select;
   }
 };
 
-const handleGenderChange = (select) => {
-  if (selectListGender.value.includes(select)) {
-    paramsQueryGender.value = select;
-  }
-};
+const handleStatusChange = createSelectHandler(
+  selectListStatus.value,
+  paramsQueryStatus
+);
+
+const handleGenderChange = createSelectHandler(
+  selectListGender.value,
+  paramsQueryGender
+);
 
 const goToPage = (page) => {
   currentPage.value = page;
