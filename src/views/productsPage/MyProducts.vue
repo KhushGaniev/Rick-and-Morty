@@ -3,67 +3,69 @@
     <default-header />
 
     <div class="container">
-      <div class="product__wrapper">
-        <div class="product__select">
-          <custom-select
-            :list="selectListStatus"
-            :defaultValue="defaultValueStatus"
-            @value-сhange="handleStatusChange"
-          />
+      <div class="product__select">
+        <custom-select
+          :list="selectListStatus"
+          :defaultValue="defaultValueStatus"
+          @value-сhange="handleStatusChange"
+        />
 
-          <custom-select
-            :list="selectListGender"
-            :defaultValue="defaultValueGender"
-            @value-сhange="handleGenderChange"
-          />
+        <custom-select
+          :list="selectListGender"
+          :defaultValue="defaultValueGender"
+          @value-сhange="handleGenderChange"
+        />
 
-          <default-button
-            :title="'Применить'"
-            :color="'primary-button'"
-            @click="fetchDataFromApi"
-          />
+        <default-button
+          :title="'Применить'"
+          :color="'primary-button'"
+          @click="fetchDataFromApi"
+        />
 
-          <default-button
-            :title="'Сбросить фильтры'"
-            :color="'secondary-button'"
-            @click="clearFilterSelect"
-          />
-        </div>
-
-        <cards-person :dataResults="dataResults" />
-
-        <p v-if="error !== null">{{ error }}</p>
-
-        <p v-if="loading">Is loading...</p>
+        <default-button
+          :title="'Сбросить фильтры'"
+          :color="'secondary-button'"
+          @click="clearFilterSelect"
+        />
       </div>
 
-      <div class="product__pagination">
-        <default-button
-          :title="'1'"
-          :color="'secondary-button'"
-          @click="goToPage(1)"
-        />
+      <div class="product__container">
+        <div class="product__wrapper">
+          <cards-person :dataResults="dataResults" />
 
-        <default-button
-          :disabled="isFirstPage"
-          :title="'Previous'"
-          :color="'secondary-button'"
-          @click="prevPage"
-        />
+          <p v-if="error !== null">{{ error }}</p>
 
-        <default-button
-          :disabled="isLastPage"
-          :title="'Next'"
-          :color="'secondary-button'"
-          @click="nextPage"
-        />
+          <p v-if="loading">Is loading...</p>
+        </div>
 
-        <default-button
-          :disabled="isLastPage"
-          :title="String(lastPageCount)"
-          :color="'secondary-button'"
-          @click="goToPage(lastPageCount)"
-        />
+        <div class="product__pagination">
+          <default-button
+            :title="'1'"
+            :color="'secondary-button'"
+            @click="goToPage(1)"
+          />
+
+          <default-button
+            :disabled="isFirstPage"
+            :title="'Previous'"
+            :color="'secondary-button'"
+            @click="prevPage"
+          />
+
+          <default-button
+            :disabled="isLastPage"
+            :title="'Next'"
+            :color="'secondary-button'"
+            @click="nextPage"
+          />
+
+          <default-button
+            :disabled="isLastPage"
+            :title="String(lastPageCount)"
+            :color="'secondary-button'"
+            @click="goToPage(lastPageCount)"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -193,17 +195,24 @@ const fetchDataFromApi = async () => {
 
 <style lang="scss" scoped>
 .container {
+  display: flex;
   max-width: 1500px;
   margin: 0 auto;
+  gap: 20px;
 }
 
 .product {
   background-color: var(--white-01);
   min-height: 100vh;
 
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
   &__wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
     padding: 16px;
   }
