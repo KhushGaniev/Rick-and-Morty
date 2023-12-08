@@ -56,7 +56,7 @@ const select = (option) => {
   margin: 20px auto;
 
   &__selector {
-    border: 1px solid gainsboro;
+    border: 1px solid var(--white-05);
     background: var(--white-01);
     position: relative;
     z-index: 1;
@@ -87,8 +87,8 @@ const select = (option) => {
   &__list {
     width: 100%;
     font-size: 16px;
-    border: 1px solid gainsboro;
-    background: #fff;
+    border: 1px solid var(--white-05);
+    background: var(--default-white);
   }
 
   &__item {
@@ -96,7 +96,7 @@ const select = (option) => {
     color: var(--grey-02);
     &:hover {
       color: var(--default-white);
-      background: seagreen;
+      background: var(--cl-01);
     }
   }
 
