@@ -44,6 +44,10 @@ const infoCharacters = computed(() => {
   width: 300px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  @media (max-width: 360px) {
+    width: 250px;
+  }
+
   &__header {
     padding: 16px;
     background-color: var(--white-03);

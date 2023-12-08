@@ -196,9 +196,18 @@ const fetchDataFromApi = async () => {
 <style lang="scss" scoped>
 .container {
   display: flex;
-  max-width: 1500px;
+  padding: 0 16px;
+  max-width: 1300px;
   margin: 0 auto;
   gap: 20px;
+
+  @media (min-width: 1920px) {
+    max-width: 1700px;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
 }
 
 .product {
@@ -206,21 +215,38 @@ const fetchDataFromApi = async () => {
   min-height: 100vh;
 
   &__container {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 0 auto;
   }
 
   &__wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     padding: 16px;
+
+    @media (min-width: 1920px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width: 1440px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 670px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__select {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @media (max-width: 1200px) {
+      max-width: 100%;
+      margin: 0 auto;
+    }
   }
 
   &__pagination {
