@@ -85,6 +85,14 @@ const paramsQueryGender = ref("");
 const isFirstPage = computed(() => currentPage.value === 1);
 const isLastPage = computed(() => currentPage.value === lastPageCount.value);
 
+const storedParamsQuery = localStorage.getItem("paramsQuery");
+
+if (storedParamsQuery) {
+  const parsedParamsQuery = JSON.parse(storedParamsQuery);
+  paramsQueryStatus.value = parsedParamsQuery.status;
+  paramsQueryGender.value = parsedParamsQuery.gender;
+}
+
 onMounted(() => {
   fetchDataFromApi();
 });
@@ -108,6 +116,8 @@ const handleGenderChange = createSelectHandler(
 const clearFilterSelect = () => {
   paramsQueryGender.value = "";
   paramsQueryStatus.value = "";
+  defaultValueStatus.value = "Status";
+  defaultValueGender.value = "Gender";
 
   fetchDataFromApi();
 };
@@ -138,6 +148,8 @@ const fetchDataFromApi = async () => {
       gender: paramsQueryGender.value,
       status: paramsQueryStatus.value,
     };
+
+    localStorage.setItem("paramsQuery", JSON.stringify(queryParams));
 
     dataResults.value = await getDataRickMorty(queryParams);
 
