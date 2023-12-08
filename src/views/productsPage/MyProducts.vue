@@ -132,9 +132,6 @@ const fetchDataFromApi = async () => {
     };
 
     dataResults.value = await getDataRickMorty(queryParams);
-    console.log("Next page", currentPage.value);
-
-    console.log(dataResults.value.info);
 
     const episodeNames = await Promise.all(
       dataResults.value.results.map(async (result) =>
