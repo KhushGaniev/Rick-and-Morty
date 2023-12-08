@@ -17,7 +17,8 @@
             @value-сhange="handleGenderChange"
           />
 
-          <button @click="fetchDataFromApi()">Click</button>
+          <button @click="fetchDataFromApi">Click</button>
+          <button @click="clearFilterSelect">Clear</button>
         </div>
 
         <cards-person :dataResults="dataResults" />
@@ -103,6 +104,13 @@ const handleGenderChange = createSelectHandler(
   selectListGender.value,
   paramsQueryGender
 );
+
+const clearFilterSelect = () => {
+  paramsQueryGender.value = "";
+  paramsQueryStatus.value = "";
+
+  fetchDataFromApi();
+};
 
 const goToPage = (page) => {
   currentPage.value = page;
