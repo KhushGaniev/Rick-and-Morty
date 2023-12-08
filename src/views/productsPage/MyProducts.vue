@@ -8,12 +8,16 @@
           <custom-select
             :list="selectListStatus"
             :defaultValue="defaultValueStatus"
+            @value-сhange="handleStatusChange"
           />
 
           <custom-select
             :list="selectListGender"
             :defaultValue="defaultValueGender"
+            @value-сhange="handleGenderChange"
           />
+
+          <button @click="fetchDataFromApi()">Click</button>
         </div>
 
         <cards-person :dataResults="dataResults" />
@@ -74,6 +78,8 @@ const selectListStatus = ref(["alive", "dead", "unknown"]);
 const selectListGender = ref(["female", "male", "genderless", "unknown"]);
 const defaultValueStatus = ref("Status");
 const defaultValueGender = ref("Gender");
+const paramsQueryStatus = ref("");
+const paramsQueryGender = ref("");
 
 const isFirstPage = computed(() => currentPage.value === 1);
 const isLastPage = computed(() => currentPage.value === lastPageCount.value);
@@ -81,6 +87,18 @@ const isLastPage = computed(() => currentPage.value === lastPageCount.value);
 onMounted(() => {
   fetchDataFromApi();
 });
+
+const handleStatusChange = (select) => {
+  if (selectListStatus.value.includes(select)) {
+    paramsQueryStatus.value = select;
+  }
+};
+
+const handleGenderChange = (select) => {
+  if (selectListGender.value.includes(select)) {
+    paramsQueryGender.value = select;
+  }
+};
 
 const goToPage = (page) => {
   currentPage.value = page;
@@ -103,7 +121,12 @@ const fetchDataFromApi = async () => {
   loading.value = true;
 
   try {
-    const queryParams = { page: currentPage.value };
+    const queryParams = {
+      page: currentPage.value,
+      gender: paramsQueryGender.value,
+      status: paramsQueryStatus.value,
+    };
+
     dataResults.value = await getDataRickMorty(queryParams);
     console.log("Next page", currentPage.value);
 

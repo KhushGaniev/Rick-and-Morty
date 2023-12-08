@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 
 const props = defineProps({
   defaultValue: {
@@ -33,6 +33,8 @@ const props = defineProps({
   },
 });
 
+const emits = defineEmits(["value-сhange"]);
+
 const visible = ref(true);
 const newDefaultValue = ref(props.defaultValue);
 
@@ -42,6 +44,7 @@ const toggle = () => {
 
 const select = (option) => {
   newDefaultValue.value = option;
+  emits("value-сhange", newDefaultValue.value);
 };
 </script>
 
