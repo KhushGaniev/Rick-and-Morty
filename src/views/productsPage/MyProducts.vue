@@ -7,12 +7,14 @@
         <custom-select
           :list="selectListStatus"
           :defaultValue="defaultValueStatus"
+          :uniqueId="'1'"
           @value-сhange="handleStatusChange"
         />
 
         <custom-select
           :list="selectListGender"
           :defaultValue="defaultValueGender"
+          :uniqueId="'2'"
           @value-сhange="handleGenderChange"
         />
 

@@ -33,20 +33,36 @@ const props = defineProps({
   list: {
     type: Array,
   },
+  uniqueId: {
+    type: String,
+    default: "999",
+  },
 });
+
+const emits = defineEmits(["value-сhange"]);
+
+const storageKey = (id) => `newDefaultValue_${id}`;
+
+const getStoredValue = () => {
+  const storedValue = localStorage.getItem(storageKey(props.uniqueId));
+  return storedValue ? JSON.parse(storedValue) : null;
+};
+
+const storeValue = (value) => {
+  localStorage.setItem(storageKey(props.uniqueId), JSON.stringify(value));
+};
 
 watch(
   () => props.defaultValue,
   (newValue) => {
     const res = ref(newValue);
     newDefaultValue.value = res.value;
+    storeValue(newDefaultValue.value);
   }
 );
 
-const emits = defineEmits(["value-сhange"]);
-
 const visible = ref(false);
-const newDefaultValue = ref(props.defaultValue);
+const newDefaultValue = ref(getStoredValue() || props.defaultValue);
 
 const toggle = () => {
   visible.value = !visible.value;
@@ -54,6 +70,7 @@ const toggle = () => {
 
 const select = (option) => {
   newDefaultValue.value = option;
+  storeValue(newDefaultValue.value);
   emits("value-сhange", newDefaultValue.value);
 };
 </script>
