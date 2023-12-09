@@ -1,6 +1,6 @@
 <template>
   <button :class="color">
-    {{ title }}
+    <slot />
   </button>
 </template>
 
@@ -8,9 +8,6 @@
 import { ref, watch, onBeforeMount, defineProps } from "vue";
 
 const props = defineProps({
-  title: {
-    type: String,
-  },
   color: {
     type: String,
   },

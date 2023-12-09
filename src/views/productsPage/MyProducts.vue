@@ -18,17 +18,13 @@
           @value-сhange="handleGenderChange"
         />
 
-        <default-button
-          :title="'Применить'"
-          :color="'primary-button'"
-          @click="fetchDataFromApi"
-        />
+        <default-button :color="'primary-button'" @click="fetchDataFromApi">
+          Применить
+        </default-button>
 
-        <default-button
-          :title="'Сбросить фильтры'"
-          :color="'secondary-button'"
-          @click="clearFilterSelect"
-        />
+        <default-button :color="'secondary-button'" @click="clearFilterSelect">
+          Сбросить фильтры
+        </default-button>
       </div>
 
       <div class="product__container">
@@ -41,32 +37,33 @@
         </div>
 
         <div class="product__pagination">
-          <default-button
-            :title="'1'"
-            :color="'secondary-button'"
-            @click="goToPage(1)"
-          />
+          <default-button :color="'secondary-button'" @click="goToPage(1)">
+            1
+          </default-button>
 
           <default-button
             :disabled="isFirstPage"
-            :title="'Previous'"
             :color="'secondary-button'"
             @click="prevPage"
-          />
+          >
+            Previous
+          </default-button>
 
           <default-button
             :disabled="isLastPage"
-            :title="'Next'"
             :color="'secondary-button'"
             @click="nextPage"
-          />
+          >
+            Next
+          </default-button>
 
           <default-button
             :disabled="isLastPage"
-            :title="String(lastPageCount)"
             :color="'secondary-button'"
             @click="goToPage(lastPageCount)"
-          />
+          >
+            {{ lastPageCount }}
+          </default-button>
         </div>
       </div>
     </div>
