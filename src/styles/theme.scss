@@ -1,0 +1,36 @@
+@import '@/styles/colors.scss';
+
+:root { 
+
+  /* default colors */
+  --default-black: #111;
+  --default-white: #fff;
+  --default-grey: #555;
+
+  /* popular colors */
+  --primary-cl: #4caf50;
+  --color-secondary: #007bff;
+
+  /* hover colors */
+  --hover-secondary: #0056b3;
+  --hover-cl: #45a049;
+
+  /* active colors */
+  --active-cl: #39843c;
+  --active-secondary: #003366;
+
+  /* colors */
+  --black-blue-01: #001a33;
+
+  --cl-01: seagreen;
+  
+  --grey-01: #333;
+  --grey-02: #666;
+  --grey-03: #888;
+
+  --white-01: #f8f8f8;
+  --white-02: #ccc;
+  --white-03: #f0f0f0;
+  --white-04: #eaeaea;
+  --white-05: gainsboro;
+}
